@@ -12,3 +12,12 @@ const header_bottom = [
 ];
 
 console.log(header_bottom);
+
+const header_rasm = [
+    { id: 1, img: "./images/Group 81.png", name: "999" },
+    { id: 2, img: "./images/Group 82.png", name: "10%" },
+    { id: 1, img: "./images/Group 81.png", name: "999" },
+    { id: 2, img: "./images/Group 82.png", name: "10%" },
+];
+
+console.log(header_rasm);
