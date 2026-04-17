@@ -32,6 +32,7 @@ header .container #hearder_bottom .card {
   height: 100px;
   margin-top: 50px;
   padding: 5px 5px;
+  border-radius: 12px;
   background: #F0F0F0;
   color: black;
   box-shadow: 0px 10px 20px 10px rgb(182, 182, 182);
@@ -40,11 +41,21 @@ header .container #hearder_bottom .card {
 header .container #hearder_bottom .card:hover {
   color: red;
 }
+header .container .header_rasm {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+  text-align: center;
+}
+header .container .header_rasm img {
+  width: 100%;
+}
 
 main #section .container form {
   max-width: 100%;
   height: 50px;
-  background: aqua;
+  background: #F0F0F0;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -59,9 +70,21 @@ main #section .container form p {
 }
 main #section .container form input {
   width: 60%;
-  height: 28px;
+  height: 38px;
+  border: 1px solid #F0F0F0;
+  padding: 0 10px;
+  border-radius: 6px;
 }
 main #section .container form button {
   width: 10%;
-  height: 28px;
+  height: 38px;
+  background: #FF7010;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  transition: all 1s ease-in-out;
+}
+main #section .container form button:hover {
+  background: white;
+  color: #FF7010;
 }/*# sourceMappingURL=style.css.map */

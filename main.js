@@ -1,4 +1,6 @@
 const headerContainer = document.getElementById("hearder_bottom"); 
+const headerRasmContainer = document.querySelector(".header_rasm"); 
+const box = document.getElementById("inp");
 
 const header_bottom_data = [
     { id: 1, img: "./img/Fire.png", name: "AKSIYA" },
@@ -12,35 +14,43 @@ const header_bottom_data = [
 ];
 
 const header_rasm = [
-    { id: 1, img: "./img/Group 81.png", name: "999" },
-    { id: 2, img: "./img/Group 82.png", name: "10%" },
-    { id: 1, img: "./img/Group 81.png", name: "999" },
-    { id: 2, img: "./img/Group 82.png", name: "10%" },
+    { id: 1, img: "./img/Group 81.png",name: "AKSIYA"  },
+    { id: 2, img: "./img/Group 82.png",name: "AKSIYA"  },
+    { id: 3, img: "./img/Group 81.png",name: "AKSIYA"  },
+    { id: 4, img: "./img/Group 82.png",name: "AKSIYA"  },
 ];
 
-function rendercard(data) {
-    if (!headerContainer) return; 
+function rendercard(data, element) {
+    if (!element) return; 
 
     if (data.length === 0) {
-        headerContainer.innerHTML = "<h3> Hech narsa yo'q</h3>";
+        element.innerHTML = "<h3> Hech narsa yo'q</h3>";
         return;
     }
 
     const cardHTML = data.map(el => `
-    <div class="card"> <img src="${el.img}" alt="${el.name}">
+    <div class="card"> 
+        <img src="${el.img}" alt="${el.name}">
         <h1>${el.name}</h1>
     </div>
     `).join('');
 
-    headerContainer.innerHTML = cardHTML; 
+    element.innerHTML = cardHTML; 
 }
 
-rendercard(header_bottom_data);
+rendercard(header_bottom_data, headerContainer);
+rendercard(header_rasm, headerRasmContainer);
 
+function filterInp(data) {
+    if (!box) return;
 
-// const header_rasm = [
-//     { id: 1, img: "./images/Group 81.png", name: "999" },
-//     { id: 2, img: "./images/Group 82.png", name: "10%" },
-//     { id: 1, img: "./images/Group 81.png", name: "999" },
-//     { id: 2, img: "./images/Group 82.png", name: "10%" },
-// ];
+    box.addEventListener("input", (e) => { 
+        let inputValue = e.target.value.toLowerCase();
+
+        let filteredData = data.filter(item => {
+            return item.name.toLowerCase().includes(inputValue);
+        });
+
+        rendercard(filteredData, headerContainer);
+    });
+}
