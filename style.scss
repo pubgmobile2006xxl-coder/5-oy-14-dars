@@ -17,10 +17,36 @@
 header {
 
     .container {
+
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 5px;
+            border: 1px solid rgb(210, 210, 210);
+
+        }
+
+        #hearder_bottom {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+
+            .card {
+                width: 20%;
+                height: 100px;
+                margin-top: 50px;
+                padding: 5px 5px;
+                background: #F0F0F0;
+                color: black;
+                box-shadow: 0px 10px 20px 10px rgb(182, 182, 182);
+                transition: all 1s ease-in-out;
+            }
+            .card:hover {
+                color: red;
+                
+            }
         }
     }
 }
@@ -45,12 +71,12 @@ main {
                     padding: 0 32px;
                 }
 
-                input{
+                input {
                     width: 60%;
                     height: 28px;
                 }
 
-                button{
+                button {
                     width: 10%;
                     height: 28px;
                 }

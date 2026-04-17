@@ -19,7 +19,7 @@ const header_rasm = [
 ];
 
 function rendercard(data) {
-    if (!headerContainer) return; // Element topilmasa funksiyani to'xtatadi
+    if (!headerContainer) return; 
 
     if (data.length === 0) {
         headerContainer.innerHTML = "<h3> Hech narsa yo'q</h3>";
@@ -32,7 +32,6 @@ function rendercard(data) {
     </div>
     `).join('');
 
-    // MANA SHU YERDA XATO EDI:
     headerContainer.innerHTML = cardHTML; 
 }
 
