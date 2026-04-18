@@ -3,10 +3,9 @@ const headerContainer = document.getElementById("hearder_bottom");
 const headerRasmContainer = document.querySelector(".header_rasm");
 const box = document.getElementById("inp");
 
-// XATOLIK: mainContainer ikki marta e'lon qilingan edi. 
-// Ularni alohida nom bilan olish kerak:
 const pizzaContainer = document.getElementById("pizza_list");
 const sushiContainer = document.getElementById("sushi_list");
+const zakuskiContainer = document.getElementById("zakuski_list");
 
 // --- 2. MA'LUMOTLAR (DATA) ---
 const header_bottom_data = [
@@ -41,13 +40,13 @@ let pizza_data = [
 let sushi_data = [
     { id: 1, img: "./img/Rectangle 4..png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 399, count: 0, badge: "ХИТ" },
     { id: 2, img: "./img/Rectangle 5 (1).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 549, count: 0, badge: "NEW" },
-    { id: 3, img: "./img/Rectangle 5 (2).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 249, count: 0, badge: "NEW" },
-    { id: 4, img: "./img/Rectangle 5 (3).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 475, count: 0, badge: "NEW" }, 
-    { id: 5, img: "./img/Rectangle 5 (3).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 475, count: 0, badge: "NEW" }, 
-    { id: 6, img: "./img/Rectangle 5 (2).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 249, count: 0, badge: "NEW" },
-    { id: 7, img: "./img/Rectangle 4..png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 399, count: 0, badge: "ХИТ" },
-    { id: 8, img: "./img/Rectangle 5 (1).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус унаги, креветка, авокадо, чип...", price: 549, count: 0, badge: "NEW" },
-    // Narx o'zgartirildi
+    { id: 3, img: "./img/Rectangle 5 (2).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус unagi...", price: 249, count: 0, badge: "NEW" },
+    { id: 4, img: "./img/Rectangle 5 (3).png", name: "Филадельфия кранч", description: "Семга, рис, сыр креметто, соус unagi...", price: 475, count: 0, badge: "NEW" },
+];
+
+let zakuski_data = [
+    { id: 1, img: "./img/Rectangle 4..png", name: "Картофель фри", description: "Qarsillagan kartoshka fri...", price: 150, count: 0, badge: "ХИТ" },
+    { id: 2, img: "./img/Rectangle 5 (1).png", name: "Наггетсы", description: "Tovuqli mazali naggetslar...", price: 250, count: 0, badge: "NEW" },
 ];
 
 // --- 3. FUNKSIYALAR ---
@@ -64,26 +63,20 @@ function rendercard(data, element) {
 // PIZZA RENDER
 function renderProducts(data) {
     if (!pizzaContainer) return;
-    if (data.length === 0) {
-        pizzaContainer.innerHTML = "<h3 style='grid-column: 1/-1; text-align: center;'>Hech narsa topilmadi...</h3>";
-        return;
-    }
-
     pizzaContainer.innerHTML = data.map(item => `
         <div class="card">
             <div class="badge">${item.badge}</div>
             <img src="${item.img}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>${item.description}</p>
-            
             <div class="counter-container">
                 <button onclick="changeCount(${item.id}, -1)">-</button>
                 <span>${item.count}</span>
                 <button onclick="changeCount(${item.id}, 1)">+</button>
+            </div>
             <div class="card-footer">
                 <button class="select-btn" onclick="resetCount(${item.id})">Выбрать</button>
                 <span class="price">от ${item.count > 0 ? item.price * item.count : item.price} ₽</span>
-            </div>
             </div>
         </div>
     `).join('');
@@ -92,81 +85,90 @@ function renderProducts(data) {
 // SUSHI RENDER
 function renderSushi(data) {
     if (!sushiContainer) return;
-    if (data.length === 0) {
-        sushiContainer.innerHTML = "<h3 style='grid-column: 1/-1; text-align: center;'>Hech narsa topilmadi...</h3>";
-        return;
-    }
-
     sushiContainer.innerHTML = data.map(item => `
         <div class="card">
             <div class="badge">${item.badge}</div>
             <img src="${item.img}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>${item.description}</p>
-            
             <div class="counter-container">
                 <button onclick="changeSushiCount(${item.id}, -1)">-</button>
                 <span>${item.count}</span>
                 <button onclick="changeSushiCount(${item.id}, 1)">+</button>
+            </div>
             <div class="card-footer">
                 <button class="select-btn" onclick="resetSushiCount(${item.id})">Выбрать</button>
                 <span class="price">от ${item.count > 0 ? item.price * item.count : item.price} ₽</span>
-            </div> 
+            </div>
+        </div>
+    `).join('');
+}
+
+// ZAKUSKI RENDER
+function renderZakuski(data) {
+    if (!zakuskiContainer) return;
+    zakuskiContainer.innerHTML = data.map(item => `
+        <div class="card">
+            <div class="badge">${item.badge}</div>
+            <img src="${item.img}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <div class="counter-container">
+                <button onclick="changeZakuskiCount(${item.id}, -1)">-</button>
+                <span>${item.count}</span>
+                <button onclick="changeZakuskiCount(${item.id}, 1)">+</button>
+            </div>
+            <div class="card-footer">
+                <button class="select-btn" onclick="resetZakuskiCount(${item.id})">Выбрать</button>
+                <span class="price">от ${item.count > 0 ? item.price * item.count : item.price} ₽</span>
             </div>
         </div>
     `).join('');
 }
 
 // Qidiruv funksiyasi (Universal)
-function filterInp(data, type) {
+function filterInp() {
     if (!box) return;
     box.addEventListener("input", (e) => {
-        let inputValue = e.target.value.toLowerCase();
-        let filteredData = data.filter(item => item.name.toLowerCase().includes(inputValue));
-        if(type === 'pizza') renderProducts(filteredData);
-        if(type === 'sushi') renderSushi(filteredData);
+        let val = e.target.value.toLowerCase();
+        renderProducts(pizza_data.filter(i => i.name.toLowerCase().includes(val)));
+        renderSushi(sushi_data.filter(i => i.name.toLowerCase().includes(val)));
+        renderZakuski(zakuski_data.filter(i => i.name.toLowerCase().includes(val)));
     });
 }
 
-// Hisoblagichlar
-window.changeCount = function (id, action) {
-    pizza_data = pizza_data.map(item => {
-        if (item.id === id) {
-            let newCount = item.count + action;
-            return { ...item, count: newCount < 0 ? 0 : newCount };
-        }
-        return item;
-    });
+// Hisoblagichlar mantiqi
+window.changeCount = (id, action) => {
+    pizza_data = pizza_data.map(i => i.id === id ? {...i, count: Math.max(0, i.count + action)} : i);
+    renderProducts(pizza_data);
+};
+window.resetCount = (id) => {
+    pizza_data = pizza_data.map(i => i.id === id ? {...i, count: 0} : i);
     renderProducts(pizza_data);
 };
 
-window.resetCount = function (id) {
-    pizza_data = pizza_data.map(item => (item.id === id ? { ...item, count: 0 } : item));
-    renderProducts(pizza_data);
+window.changeSushiCount = (id, action) => {
+    sushi_data = sushi_data.map(i => i.id === id ? {...i, count: Math.max(0, i.count + action)} : i);
+    renderSushi(sushi_data);
 };
-
-window.changeSushiCount = function (id, action) {
-    sushi_data = sushi_data.map(item => {
-        if (item.id === id) {
-            let newCount = item.count + action;
-            return { ...item, count: newCount < 0 ? 0 : newCount };
-        }
-        return item;
-    });
+window.resetSushiCount = (id) => {
+    sushi_data = sushi_data.map(i => i.id === id ? {...i, count: 0} : i);
     renderSushi(sushi_data);
 };
 
-window.resetSushiCount = function (id) {
-    sushi_data = sushi_data.map(item => (item.id === id ? { ...item, count: 0 } : item));
-    renderSushi(sushi_data);
+window.changeZakuskiCount = (id, action) => {
+    zakuski_data = zakuski_data.map(i => i.id === id ? {...i, count: Math.max(0, i.count + action)} : i);
+    renderZakuski(zakuski_data);
+};
+window.resetZakuskiCount = (id) => {
+    zakuski_data = zakuski_data.map(i => i.id === id ? {...i, count: 0} : i);
+    renderZakuski(zakuski_data);
 };
 
 // --- 4. ISHGA TUSHIRISH ---
 rendercard(header_bottom_data, headerContainer);
 rendercard(header_rasm, headerRasmContainer);
-
 renderProducts(pizza_data); 
 renderSushi(sushi_data);
-
-filterInp(pizza_data, 'pizza');
-filterInp(sushi_data, 'sushi');
+renderZakuski(zakuski_data);
+filterInp();
