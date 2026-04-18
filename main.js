@@ -55,6 +55,17 @@ let zakuski_data = [
     { id: 8, img: "./img/Rectangle 4.png", name: "EASY PEASY огуречный расколбас", description: "Курица, Лук, Перец Халапеньо,", price: 399, count: 0, badge: "ХИТ" },
 ];
 
+let desert_data = [
+    { id: 1, img: "./img/Rectangle 6.png", name: "Картофель фри", description: "Qarsillagan kartoshka fri...", price: 150, count: 0, badge: "ХИТ" },
+    { id: 2, img: "./img/Rectangle 6 (1).png", name: "Наггетсы", description: "Tovuqli mazali naggetslar...", price: 250, count: 0, badge: "NEW" },
+    { id: 3, img: "./img/Rectangle 6 (2).png", name: "Margarita Pitsa", description: "Klassik pomidor va motsarella pishlog'i...", price: 249, count: 0, badge: "NEW" },
+    { id: 4, img: "./img/Rectangle 6 (3).png", name: "Margarita Pitsa", description: "Klassik pomidor va motsarella pishlog'i...", price: 630, count: 0, badge: "NEW" },
+    { id: 5, img: "./img/Rectangle 6 (3).png", name: "Margarita Pitsa", description: "Klassik pomidor va motsarella pishlog'i...", price: 630, count: 0, badge: "NEW" },
+    { id: 6, img: "./img/Rectangle 6 (2).png", name: "Margarita Pitsa", description: "Klassik pomidor va motsarella pishlog'i...", price: 249, count: 0, badge: "NEW" },
+    { id: 7, img: "./img/Rectangle 4.png", name: "EASY PEASY огуречный расколбас", description: "Курица, Лук, Перец Халапеньо,", price: 399, count: 0, badge: "ХИТ" },
+    { id: 8, img: "./img/Rectangle 4.png", name: "EASY PEASY огуречный расколбас", description: "Курица, Лук, Перец Халапеньо,", price: 399, count: 0, badge: "ХИТ" },
+];
+
 // --- 3. FUNKSIYALAR ---
 
 function rendercard(data, element) {
